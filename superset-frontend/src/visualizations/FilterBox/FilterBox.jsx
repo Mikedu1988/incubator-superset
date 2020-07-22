@@ -209,6 +209,7 @@ class FilterBox extends React.Component {
         tagStr = tagStr.replace(']', '');
         tagStr = tagStr.trim();
         let tagArr = tagStr.split(',');
+        console.log('tagArr====' + tagArr);
         tagArr = tagArr.sort();
         for (let j = 0; j < tagArr.length; j++) {
           if (tags.indexOf(tagArr[j].trim()) === -1 && tagArr[j] !== '') {

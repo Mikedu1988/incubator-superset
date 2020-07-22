@@ -209,7 +209,6 @@ class FilterBox extends React.Component {
         tagStr = tagStr.replace(']', '');
         tagStr = tagStr.trim();
         let tagArr = tagStr.split(',');
-        console.log('tagArr====' + tagArr);
         tagArr = tagArr.sort();
         for (let j = 0; j < tagArr.length; j++) {
           if (tags.indexOf(tagArr[j].trim()) === -1 && tagArr[j] !== '') {
@@ -285,7 +284,7 @@ class FilterBox extends React.Component {
           : textOrder;
       });
     }
-    return this.transformOptions(options, this.getKnownMax(key, options));
+    return this.transformOptions(key, options, this.getKnownMax(key, options));
   }
 
   renderDateFilter() {
@@ -402,13 +401,13 @@ class FilterBox extends React.Component {
       <OnPasteSelect
         cacheOptions
         loadOptions={this.debounceLoadOptions(key)}
-        defaultOptions={this.transformOptions(data)}
+        defaultOptions={this.transformOptions(key, data)}
         key={key}
         placeholder={t('Type or Select [%s]', label)}
         isMulti={filterConfig[FILTER_CONFIG_ATTRIBUTES.MULTIPLE]}
         isClearable={filterConfig[FILTER_CONFIG_ATTRIBUTES.CLEARABLE]}
         value={value}
-        options={this.transformOptions(data)}
+        options={this.transformOptions(key, data)}
         onChange={newValue => {
           // avoid excessive re-renders
           if (newValue !== value) {
